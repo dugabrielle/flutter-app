@@ -1,0 +1,111 @@
+Tema escuro: MaterialApp(
+  theme: ThemeData(
+    brightness: Brightness.dark,
+    primaryColor: Colors.blueGrey
+  ),
+
+projeto task
+
+header 
+Minhas Lista de Tarefas
+menu
+foto
+nome
+home
+perfil
+configurações
+
+Tarefas
+arrastar da opção de excluir
+botão flutuante + ->
+espaço para digitar
+
+
+home page
+titulo
+
+tarefas
+estilização
+
+Expanded - expande o child de uma row/column/flex para que o child preencha todo o espaço disponível.
+Por exemplo, horizontalmente para uma Row ou verticalmente para uma Column. Se vários filhos forem expandidos, o espaço disponível será dividido entre eles de acordo com o fator flex .
+
+Child vs. Children
+child:
+
+É usado quando um widget aceita apenas um único filho.
+Por exemplo, o widget Container pode ter apenas um único child. Se você usar um Container, ele deve ter apenas um widget dentro dele.
+dart
+Copy code
+Container(
+  child: Text("Texto aqui"), // Apenas um filho
+)
+
+children:
+
+É usado quando um widget pode ter múltiplos filhos.
+Por exemplo, o widget Row, Column ou ListView aceita uma lista de widgets. Nesse caso, você usa children para incluir vários widgets.
+dart
+Copy code
+Row(
+  children: [
+    Icon(Icons.star), // Primeiro filho
+    Text("Texto aqui"), // Segundo filho
+  ],
+)
+
+CircleAvatar: Este widget é projetado especificamente para exibir imagens em formato circular. Ele cuida do arredondamento automaticamente.
+backgroundImage: Você pode usar NetworkImage para carregar uma imagem da web ou AssetImage para carregar uma imagem local do seu projeto.
+
+O Spacer é um widget em Flutter que cria um espaço flexível em uma Row, Column ou Flex. Ele é útil para distribuir espaço entre os widgets, permitindo que você crie layouts que se ajustem automaticamente ao tamanho disponível. 
+
+Flex: O Spacer também pode ter um fator de flexibilidade definido usando o parâmetro flex. O valor padrão é 1, mas você pode definir diferentes valores para diferentes Spacers se quiser que um ocupem mais espaço que o outro.
+
+ toolbarHeight}
+Define a altura do componente da barra de ferramentas de um [AppBar].
+
+ListView()
+cria lista roláveis de elementor, geralmente dinâmicas
+ListView(
+  children: [
+    ListTile(title: Text("Item 1")),
+    ListTile(title: Text("Item 2")),
+    ListTile(title: Text("Item 3")),
+  ],
+)
+
+Listas longas: listView.builder
+ListView.builder(
+  itemCount: 100, // número total de itens
+  itemBuilder (como cada item será construído) : (BuildContext context, int index) {
+    return ListTile(
+      title: Text("Item $index"),
+    );
+  },
+)
+
+ListView.separated permite adicionar separadores entre os itens da lista, como linhas ou espaços, ideal para listas que precisam de divisão visual entre os itens.
+
+Propriedades do ListView:
+scrollDirection: Define a direção da rolagem (Axis.vertical ou Axis.horizontal).
+physics: Controla o comportamento da rolagem. Por exemplo, BouncingScrollPhysics para um efeito elástico ou NeverScrollableScrollPhysics para desabilitar a rolagem.
+shrinkWrap: Ajusta o tamanho do ListView para o conteúdo, útil em listas dentro de colunas ou containers.
+cacheExtent: Define quantos pixels ao redor da área visível são renderizados antecipadamente, o que pode melhorar o desempenho
+
+O widget ListTile no Flutter é uma opção prática para criar layouts de lista que seguem um estilo de item padrão, sendo ideal para listas onde cada item tem uma estrutura simples e uniforme
+
+Principais propriedades do ListTile
+leading: Widget que aparece no início do item, geralmente um ícone ou avatar.
+title: O título principal do item, normalmente um Text, que exibe o conteúdo mais importante.
+subtitle: Um subtítulo opcional, exibido abaixo do título, útil para informações adicionais.
+trailing: Widget que aparece no final do item, geralmente usado para ícones de ação, como um ícone de navegação (Icon(Icons.arrow_forward)).
+onTap: Função que é chamada quando o item é clicado, ideal para navegar entre telas ou realizar ações específicas.
+isThreeLine: Define se o ListTile pode usar três linhas de texto em vez de duas, útil para layouts mais detalhados.
+
+Shape
+A forma para preencher a cor de fundo , gradiente e imagem e projetar como boxShadow .
+Se for BoxShape.circle , borderRadius será ignorado.
+Para interpolar entre duas formas, considere usar ShapeDecoration e diferentes ShapeBorder s; em particular, CircleBorder em vez de BoxShape.circle e RoundedRectangleBorder em vez de BoxShape.rectangle .
+
+
+
