@@ -107,5 +107,5 @@ A forma para preencher a cor de fundo , gradiente e imagem e projetar como boxSh
 Se for BoxShape.circle , borderRadius será ignorado.
 Para interpolar entre duas formas, considere usar ShapeDecoration e diferentes ShapeBorder s; em particular, CircleBorder em vez de BoxShape.circle e RoundedRectangleBorder em vez de BoxShape.rectangle .
 
-
+createState - objeto de estado, o método lança um novo objeto de estado e o elemento o mantém
 
