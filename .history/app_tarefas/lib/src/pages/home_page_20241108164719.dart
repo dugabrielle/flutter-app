@@ -3,17 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:app_tarefas/src/pages/to_do_list.dart';
 import 'package:app_tarefas/src/model/todo.dart';
 
-class Home extends StatefulWidget {
-  Home({Key? key}) : super(key: key);
+class Home extends StatelessWidget {
+  Home({super.key});
 
-  @override
-  State<Home> createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> {
   final todosList = ToDo.todoList();
-  final _todoController = TextEditingController();
-  final _descriptionController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +30,9 @@ class _HomeState extends State<Home> {
               SliverList(
                 delegate: SliverChildListDelegate([
                   Container(
-                    padding: const EdgeInsets.all(5),
+                    padding: const EdgeInsets.all(10),
                     child: const Text(
-                      'Tarefas',
+                      'Todas as Tarefas',
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -50,8 +43,6 @@ class _HomeState extends State<Home> {
                   for (ToDo todos in todosList)
                     ToDoList(
                       todo: todos,
-                      onToDo: toDoChange,
-                      deleteToDo: deleteItem,
                     ),
                 ]),
               ),
@@ -63,9 +54,9 @@ class _HomeState extends State<Home> {
               children: [
                 Expanded(
                   child: Container(
-                    margin: EdgeInsets.only(bottom: 15, right: 10, left: 10),
+                    margin: EdgeInsets.only(bottom: 20, right: 20, left: 20),
                     padding: EdgeInsets.symmetric(
-                      horizontal: 10,
+                      horizontal: 20,
                       vertical: 5,
                     ),
                     decoration: BoxDecoration(
@@ -78,73 +69,7 @@ class _HomeState extends State<Home> {
                           spreadRadius: 0.0,
                         ),
                       ],
-                    ),
-                    child: TextField(
-                      style: TextStyle(
-                        color: Colors.black,
-                      ),
-                      controller: _todoController,
-                      decoration: InputDecoration(
-                        hintText: "Título",
-                        border: InputBorder.none,
-                        hintStyle: TextStyle(
-                          color: Colors.grey,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    margin: EdgeInsets.only(bottom: 15, right: 10),
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 10,
-                      vertical: 5,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Colors.grey,
-                          offset: Offset(0.0, 0.0),
-                          blurRadius: 10.0,
-                          spreadRadius: 0.0,
-                        ),
-                      ],
-                    ),
-                    child: TextField(
-                      style: TextStyle(
-                        color: Colors.black,
-                      ),
-                      controller: _descriptionController,
-                      decoration: InputDecoration(
-                        hintText: "Descrição",
-                        border: InputBorder.none,
-                        hintStyle: TextStyle(
-                          color: Colors.grey,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(bottom: 15, right: 15),
-                  child: ElevatedButton(
-                    child: Text(
-                      '+',
-                      style: TextStyle(fontSize: 30),
-                    ),
-                    onPressed: () {
-                      addToDo(_todoController.text);
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.purple,
-                      minimumSize: Size(60, 60),
-                      elevation: 10,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(
-                            5), // força o formato quadrado
-                      ),
+                      borderRadius: BorderRadius.circular(10),
                     ),
                   ),
                 ),
@@ -156,32 +81,6 @@ class _HomeState extends State<Home> {
     );
   }
 
-  void toDoChange(ToDo todo) {
-    setState(() {
-      todo.isCompleted = !todo.isCompleted;
-    });
-  }
-
-  void deleteItem(String id) {
-    setState(() {
-      todosList.removeWhere((item) => item.id == id);
-    });
-  }
-
-  int _todoCounter = 0;
-
-  void addToDo(String toDo) {
-    setState(() {
-      _todoCounter++;
-      todosList.add(ToDo(
-          id: _todoCounter.toString(),
-          todoText: _todoController.text,
-          description: _descriptionController.text));
-    });
-    _todoController.clear();
-    _descriptionController.clear();
-  }
-
   Widget searchBox() {
     return Container(
       padding: const EdgeInsets.all(10),
@@ -191,9 +90,6 @@ class _HomeState extends State<Home> {
         borderRadius: BorderRadius.circular(20),
       ),
       child: const TextField(
-        style: TextStyle(
-          color: Colors.grey,
-        ),
         decoration: InputDecoration(
           contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           prefixIcon: Icon(

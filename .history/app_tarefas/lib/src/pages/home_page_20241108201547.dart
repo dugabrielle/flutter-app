@@ -192,7 +192,7 @@ class _HomeState extends State<Home> {
       ),
       child: const TextField(
         style: TextStyle(
-          color: Colors.grey,
+          color: Colors.black,
         ),
         decoration: InputDecoration(
           contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),

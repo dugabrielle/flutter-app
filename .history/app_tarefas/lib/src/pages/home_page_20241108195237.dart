@@ -179,7 +179,6 @@ class _HomeState extends State<Home> {
           description: _descriptionController.text));
     });
     _todoController.clear();
-    _descriptionController.clear();
   }
 
   Widget searchBox() {
@@ -191,9 +190,6 @@ class _HomeState extends State<Home> {
         borderRadius: BorderRadius.circular(20),
       ),
       child: const TextField(
-        style: TextStyle(
-          color: Colors.grey,
-        ),
         decoration: InputDecoration(
           contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           prefixIcon: Icon(

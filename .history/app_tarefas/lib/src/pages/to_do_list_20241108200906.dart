@@ -41,27 +41,40 @@ class ToDoList extends StatelessWidget {
             fontSize: 14,
           ),
         ),
-        trailing: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            IconButton(
+        trailing: Container(
+          height: 35,
+          width: 35,
+          decoration: BoxDecoration(
+              color: Colors.purple, borderRadius: BorderRadius.circular(5)),
+
+          /* child: IconButton(
               onPressed: () {
+                //print('Cliquei');
                 deleteToDo(todo.id);
               },
-              iconSize: 22,
-              color: Colors.purple,
-              icon: const Icon(Icons.delete),
-            ),
-            SizedBox(width: 5),
-            IconButton(
-              onPressed: () {
-                // Função
-              },
-              iconSize: 22,
-              color: Colors.purple,
-              icon: const Icon(Icons.edit),
-            ),
-          ],
+              iconSize: 18,
+              color: Colors.white,
+              icon: Icon(Icons.delete)), */
+
+          child: Row(
+            children: [
+              IconButton(
+                  onPressed: () {
+                    //print('Cliquei');
+                    deleteToDo(todo.id);
+                  },
+                  iconSize: 18,
+                  color: Colors.white,
+                  icon: Icon(Icons.delete)),
+              IconButton(
+                  onPressed: () {
+                    //print('Cliquei');
+                  },
+                  iconSize: 18,
+                  color: Colors.white,
+                  icon: Icon(Icons.edit)),
+            ],
+          ),
         ),
       ),
     );

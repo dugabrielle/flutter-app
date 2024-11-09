@@ -13,7 +13,6 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   final todosList = ToDo.todoList();
   final _todoController = TextEditingController();
-  final _descriptionController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +84,7 @@ class _HomeState extends State<Home> {
                       ),
                       controller: _todoController,
                       decoration: InputDecoration(
-                        hintText: "Título",
+                        hintText: "Add nova nota",
                         border: InputBorder.none,
                         hintStyle: TextStyle(
                           color: Colors.grey,
@@ -96,7 +95,7 @@ class _HomeState extends State<Home> {
                 ),
                 Expanded(
                   child: Container(
-                    margin: EdgeInsets.only(bottom: 15, right: 10),
+                    margin: EdgeInsets.only(bottom: 15, right: 10, left: 10),
                     padding: EdgeInsets.symmetric(
                       horizontal: 10,
                       vertical: 5,
@@ -116,9 +115,9 @@ class _HomeState extends State<Home> {
                       style: TextStyle(
                         color: Colors.black,
                       ),
-                      controller: _descriptionController,
+                      controller: _todoController,
                       decoration: InputDecoration(
-                        hintText: "Descrição",
+                        hintText: "Add descrição",
                         border: InputBorder.none,
                         hintStyle: TextStyle(
                           color: Colors.grey,
@@ -173,13 +172,10 @@ class _HomeState extends State<Home> {
   void addToDo(String toDo) {
     setState(() {
       _todoCounter++;
-      todosList.add(ToDo(
-          id: _todoCounter.toString(),
-          todoText: _todoController.text,
-          description: _descriptionController.text));
+      todosList.add(
+          ToDo(id: _todoCounter.toString(), todoText: toDo, description: toDo));
     });
     _todoController.clear();
-    _descriptionController.clear();
   }
 
   Widget searchBox() {
@@ -191,9 +187,6 @@ class _HomeState extends State<Home> {
         borderRadius: BorderRadius.circular(20),
       ),
       child: const TextField(
-        style: TextStyle(
-          color: Colors.grey,
-        ),
         decoration: InputDecoration(
           contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           prefixIcon: Icon(

@@ -48,16 +48,16 @@ class ToDoList extends StatelessWidget {
               onPressed: () {
                 deleteToDo(todo.id);
               },
-              iconSize: 22,
+              iconSize: 20,
               color: Colors.purple,
               icon: const Icon(Icons.delete),
             ),
-            SizedBox(width: 5),
+            SizedBox(width: 1),
             IconButton(
               onPressed: () {
                 // Função
               },
-              iconSize: 22,
+              iconSize: 20,
               color: Colors.purple,
               icon: const Icon(Icons.edit),
             ),
