@@ -1,13 +1,13 @@
 class ToDo {
-  String? id;
-  String? todoText;
+  String id;
+  String todoText;
   String? description;
   bool isCompleted;
 
   ToDo({
     required this.id,
     required this.todoText,
-    required this.description,
+    this.description,
     this.isCompleted = false,
   });
 

@@ -20,15 +20,14 @@ class ToDoList extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(10),
       child: ListTile(
-        onTap: () {
-          onToDo(todo);
-        },
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         contentPadding: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
         tileColor: Colors.white,
-        leading: Icon(
-          todo.isCompleted ? Icons.check_box : Icons.check_box_outline_blank,
-          color: Colors.blue,
+        leading: Checkbox(
+          value: todo.isCompleted,  
+          onChanged: (bool? value) { // marca como concluída só se clicar no checkbox
+            onToDo(todo); 
+          },
         ),
         title: Text(
           todo.todoText ?? '',

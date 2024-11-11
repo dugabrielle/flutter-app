@@ -197,6 +197,18 @@ class _HomeState extends State<Home> {
   int _todoCounter = 0;
 
   void addToDo(String toDo) {
+
+    if (_todoController.text.isEmpty) {
+    // Exibe um alerta simples
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('O Título não pode ser vazio!'),
+        backgroundColor: Colors.red,
+      ),
+    );
+    return; // Não cria a tarefa
+  }
+
     setState(() {
       _todoCounter++;
       todosList.add(ToDo(
