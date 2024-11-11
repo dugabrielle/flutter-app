@@ -128,7 +128,7 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(bottom: 15, right: 15),
+                  margin: EdgeInsets.only(bottom: 15, right: 10),
                   child: ElevatedButton(
                     child: Text(
                       '+',
@@ -234,7 +234,7 @@ class _HomeState extends State<Home> {
           ),
           const Spacer(),
           IconButton(
-            icon: const Icon(Icons.delete, color: Colors.white, size: 30),
+            icon: const Icon(Icons.more_vert, color: Colors.white, size: 30),
             onPressed: () {
               // Implementação do botão de deletar
             },
