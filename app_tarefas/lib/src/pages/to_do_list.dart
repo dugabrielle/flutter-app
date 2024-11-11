@@ -5,12 +5,14 @@ class ToDoList extends StatelessWidget {
   final ToDo todo;
   final Function onToDo;
   final Function deleteToDo;
+  final Function editToDo;
 
   const ToDoList({
     Key? key,
     required this.todo,
     required this.onToDo,
     required this.deleteToDo,
+    required this.editToDo,
   }) : super(key: key);
 
   @override
@@ -29,7 +31,7 @@ class ToDoList extends StatelessWidget {
           color: Colors.blue,
         ),
         title: Text(
-          todo.todoText ?? 'Confirmar',
+          todo.todoText ?? '',
           style: TextStyle(
             color: Colors.black,
             fontSize: 16,
@@ -57,7 +59,7 @@ class ToDoList extends StatelessWidget {
             SizedBox(width: 5),
             IconButton(
               onPressed: () {
-                // Função de edição
+                editToDo(todo);
               },
               iconSize: 22,
               color: Colors.purple,

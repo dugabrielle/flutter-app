@@ -12,8 +12,23 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final todosList = ToDo.todoList();
+
   final _todoController = TextEditingController();
   final _descriptionController = TextEditingController();
+
+  List<ToDo> incompleteTodos = [];
+  List<ToDo> completedTodos = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _splitTodos();
+  }
+
+  void _splitTodos() {
+    incompleteTodos = todosList.where((todo) => !todo.isCompleted).toList();
+    completedTodos = todosList.where((todo) => todo.isCompleted).toList();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,20 +53,26 @@ class _HomeState extends State<Home> {
                 delegate: SliverChildListDelegate([
                   Container(
                     padding: const EdgeInsets.all(5),
-                    child: const Text(
-                      'Tarefas',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
-                    ),
                   ),
-                  for (ToDo todos in todosList)
+                  for (ToDo todos in incompleteTodos)
                     ToDoList(
                       todo: todos,
                       onToDo: toDoChange,
                       deleteToDo: deleteItem,
+                      editToDo: editItem,
+                    ),
+                  Divider(
+                    color: Colors.purple,
+                  ),
+                  Container(
+                    padding: const EdgeInsets.all(5),
+                  ),
+                  for (ToDo todo in completedTodos)
+                    ToDoList(
+                      todo: todo,
+                      onToDo: toDoChange,
+                      deleteToDo: deleteItem,
+                      editToDo: editItem,
                     ),
                 ]),
               ),
@@ -80,6 +101,7 @@ class _HomeState extends State<Home> {
                       ],
                     ),
                     child: TextField(
+                      maxLength: 100,
                       style: TextStyle(
                         color: Colors.black,
                       ),
@@ -113,6 +135,7 @@ class _HomeState extends State<Home> {
                       ],
                     ),
                     child: TextField(
+                      maxLength: 100,
                       style: TextStyle(
                         color: Colors.black,
                       ),
@@ -132,7 +155,8 @@ class _HomeState extends State<Home> {
                   child: ElevatedButton(
                     child: Text(
                       '+',
-                      style: TextStyle(fontSize: 30),
+                      style: TextStyle(fontSize: 30, color: Colors.black),
+                      
                     ),
                     onPressed: () {
                       addToDo(_todoController.text);
@@ -159,12 +183,14 @@ class _HomeState extends State<Home> {
   void toDoChange(ToDo todo) {
     setState(() {
       todo.isCompleted = !todo.isCompleted;
+      _splitTodos();
     });
   }
 
   void deleteItem(String id) {
     setState(() {
       todosList.removeWhere((item) => item.id == id);
+      _splitTodos();
     });
   }
 
@@ -178,8 +204,53 @@ class _HomeState extends State<Home> {
           todoText: _todoController.text,
           description: _descriptionController.text));
     });
+    _splitTodos();
     _todoController.clear();
     _descriptionController.clear();
+  }
+
+  void editItem(ToDo todo) {
+    final _todoController = TextEditingController(text: todo.todoText);
+    final _descriptionController =
+        TextEditingController(text: todo.description);
+
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Editar Nota'),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TextField(
+                  controller: _todoController,
+                  decoration: InputDecoration(labelText: 'Título'),
+                  maxLength: 100,
+                ),
+                TextField(
+                  controller: _descriptionController,
+                  decoration: InputDecoration(labelText: 'Descrição'),
+                  maxLength: 100,
+                ),
+              ],
+            ),
+            actions: <Widget>[
+              IconButton(
+                onPressed: () {
+                  setState(() {
+                    todo.todoText = _todoController.text; // Atualiza o título
+                    todo.description =
+                        _descriptionController.text; // Atualiza a descrição
+                  });
+                  Navigator.pop(context);
+                },
+                iconSize: 22,
+                color: Colors.purple,
+                icon: Icon(Icons.save),
+              ),
+            ],
+          );
+        });
   }
 
   Widget searchBox() {
