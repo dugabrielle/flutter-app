@@ -24,13 +24,14 @@ class ToDoList extends StatelessWidget {
         contentPadding: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
         tileColor: Colors.white,
         leading: Checkbox(
-          value: todo.isCompleted,  
-          onChanged: (bool? value) { // marca como concluída só se clicar no checkbox
-            onToDo(todo); 
+          value: todo.isCompleted,
+          onChanged: (bool? value) {
+            // marca como concluída só se clicar no checkbox
+            onToDo(todo);
           },
         ),
         title: Text(
-          todo.todoText ?? '',
+          todo.todoText,
           style: TextStyle(
             color: Colors.black,
             fontSize: 16,
@@ -52,7 +53,7 @@ class ToDoList extends StatelessWidget {
                 deleteToDo(todo.id);
               },
               iconSize: 22,
-              color: Colors.purple,
+              color: Colors.black,
               icon: const Icon(Icons.delete),
             ),
             SizedBox(width: 5),
@@ -61,7 +62,7 @@ class ToDoList extends StatelessWidget {
                 editToDo(todo);
               },
               iconSize: 22,
-              color: Colors.purple,
+              color: Colors.black,
               icon: const Icon(Icons.edit),
             ),
           ],

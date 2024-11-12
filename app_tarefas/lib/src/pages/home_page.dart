@@ -2,6 +2,7 @@ import 'package:app_tarefas/src/model/todo.dart';
 import 'package:flutter/material.dart';
 import 'package:app_tarefas/src/pages/to_do_list.dart';
 import 'package:app_tarefas/src/model/todo.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Home extends StatefulWidget {
   Home({Key? key}) : super(key: key);
@@ -11,7 +12,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final todosList = ToDo.todoList();
+  List<ToDo> todosList = [];
 
   final _todoController = TextEditingController();
   final _descriptionController = TextEditingController();
@@ -33,7 +34,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.deepPurple[100],
+      backgroundColor: Color.fromARGB(255, 232, 224, 247),
       appBar: appBarMethod(),
       body: Stack(
         children: [
@@ -52,7 +53,17 @@ class _HomeState extends State<Home> {
               SliverList(
                 delegate: SliverChildListDelegate([
                   Container(
-                    padding: const EdgeInsets.all(5),
+                    child: Text(
+                      'Tarefas',
+                      style: GoogleFonts.comicNeue(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.deepPurple[800],
+                        letterSpacing: 2,
+                      ),
+                    ),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 10, horizontal: 10),
                   ),
                   for (ToDo todos in incompleteTodos)
                     ToDoList(
@@ -61,11 +72,14 @@ class _HomeState extends State<Home> {
                       deleteToDo: deleteItem,
                       editToDo: editItem,
                     ),
-                  Divider(
-                    color: Colors.purple,
-                  ),
+                  if (completedTodos.isNotEmpty)
+                    Divider(
+                      color: Colors.black,
+                    ),
                   Container(
-                    padding: const EdgeInsets.all(5),
+                    // child: Text('Tarefas Concluídas'),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 10, horizontal: 10),
                   ),
                   for (ToDo todo in completedTodos)
                     ToDoList(
@@ -90,6 +104,7 @@ class _HomeState extends State<Home> {
                       vertical: 5,
                     ),
                     decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
                       color: Colors.white,
                       boxShadow: const [
                         BoxShadow(
@@ -124,6 +139,7 @@ class _HomeState extends State<Home> {
                       vertical: 5,
                     ),
                     decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
                       color: Colors.white,
                       boxShadow: const [
                         BoxShadow(
@@ -156,13 +172,12 @@ class _HomeState extends State<Home> {
                     child: Text(
                       '+',
                       style: TextStyle(fontSize: 30, color: Colors.black),
-                      
                     ),
                     onPressed: () {
                       addToDo(_todoController.text);
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.purple,
+                      backgroundColor: Colors.white,
                       minimumSize: Size(60, 60),
                       elevation: 10,
                       shape: RoundedRectangleBorder(
@@ -197,17 +212,16 @@ class _HomeState extends State<Home> {
   int _todoCounter = 0;
 
   void addToDo(String toDo) {
-
     if (_todoController.text.isEmpty) {
-    // Exibe um alerta simples
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('O Título não pode ser vazio!'),
-        backgroundColor: Colors.red,
-      ),
-    );
-    return; // Não cria a tarefa
-  }
+      // Exibe um alerta simples
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('O Título não pode ser vazio!'),
+          backgroundColor: Colors.red,
+        ),
+      );
+      return; // Não cria a tarefa
+    }
 
     setState(() {
       _todoCounter++;
@@ -294,17 +308,21 @@ class _HomeState extends State<Home> {
 
   AppBar appBarMethod() {
     return AppBar(
-      backgroundColor: Colors.purple,
+      backgroundColor: Colors.deepPurple[300],
       toolbarHeight: 80,
       elevation: 0,
       title: Row(
         children: [
           Expanded(
             child: Container(
-              padding: const EdgeInsets.all(5),
-              child: const Text(
-                "ToDo App",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              padding: EdgeInsets.all(5),
+              child: Text(
+                'ToDo App',
+                style: GoogleFonts.comicNeue(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
               ),
             ),
           ),
@@ -319,7 +337,7 @@ class _HomeState extends State<Home> {
           IconButton(
             icon: const Icon(Icons.more_vert, color: Colors.white, size: 30),
             onPressed: () {
-              // Implementação do botão de deletar
+              // Implementação do botão de logout
             },
           ),
         ],
