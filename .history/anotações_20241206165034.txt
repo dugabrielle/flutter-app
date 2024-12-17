@@ -109,27 +109,3 @@ Para interpolar entre duas formas, considere usar ShapeDecoration e diferentes S
 
 createState - objeto de estado, o método lança um novo objeto de estado e o elemento o mantém
 
-oq falta: Passos:
-Tela de Login
-
-Crie campos para nome de usuário e senha.
-Ao clicar em login, verifique no SQLite se as credenciais existem.
-Se existirem, redirecione para a tela principal.
-Se não, mostre uma mensagem de erro.
-Tela de Registro (Opcional)
-
-Crie campos para nome de usuário e senha.
-Ao clicar em registrar, salve o usuário no SQLite.
-Se o usuário já existir, mostre um erro. Caso contrário, registre e redirecione para o login.
-Tela Principal
-
-Após o login, mostre as tarefas salvas no SQLite.
-Permita adicionar, editar e excluir tarefas.
-Tela de Logout
-
-Na tela principal, adicione um botão de logout.
-Ao clicar, redirecione para a tela de login.
-SQLite
-
-Usuários: Crie uma tabela para armazenar nome de usuário e senha.
-Tarefas: Crie uma tabela para armazenar título, descrição e data das tarefas.

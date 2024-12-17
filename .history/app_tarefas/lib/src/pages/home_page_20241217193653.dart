@@ -24,8 +24,7 @@ class _HomeState extends State<Home> {
 
   @override
   void initState() {
-    _encontrarNota = todosList;
-    super.initState();
+    _encontrarNota = super.initState();
     _splitTodos();
   }
 

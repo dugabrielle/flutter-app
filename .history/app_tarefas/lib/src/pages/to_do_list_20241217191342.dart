@@ -29,9 +29,6 @@ class ToDoList extends StatelessWidget {
             // marca como concluída só se clicar no checkbox
             onToDo(todo);
           },
-          activeColor: Colors.black,
-          checkColor: Colors.white,
-          side: BorderSide(color: Colors.purple, width: 2),
         ),
         title: Text(
           todo.todoText,

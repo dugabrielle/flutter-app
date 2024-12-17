@@ -30,13 +30,11 @@ class ToDoList extends StatelessWidget {
             onToDo(todo);
           },
           activeColor: Colors.black,
-          checkColor: Colors.white,
-          side: BorderSide(color: Colors.purple, width: 2),
         ),
         title: Text(
           todo.todoText,
           style: TextStyle(
-            color: Colors.black,
+            color: Colors.purple[60],
             fontSize: 16,
             decoration: todo.isCompleted ? TextDecoration.lineThrough : null,
           ),

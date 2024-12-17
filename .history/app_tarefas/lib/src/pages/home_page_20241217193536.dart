@@ -14,7 +14,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   List<ToDo> todosList = [];
 
-  List<ToDo> _encontrarNota = [];
+  List<ToDo> _encontrarLista
 
   final _todoController = TextEditingController();
   final _descriptionController = TextEditingController();
@@ -24,7 +24,6 @@ class _HomeState extends State<Home> {
 
   @override
   void initState() {
-    _encontrarNota = todosList;
     super.initState();
     _splitTodos();
   }
